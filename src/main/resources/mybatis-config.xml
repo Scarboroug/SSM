@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置别名-->
+    <typeAliases>
+        <!-- 定 义 Mapper 中 引 用 到 的 业 务 对 象 类 的 位 置 -->
+        <package name="com.mzj.course.product.model"/>
+    </typeAliases>
+    <!--配 置 Mapper 的 位 置 -->
+    <mappers>
+        <mapper resource="com/mzj/course/product/mapper/ProductMapper.xml"/>
+        <mapper resource="com/mzj/course/product/mapper/ProductTypeMapper.xml"/>
+    </mappers>
+</configuration>

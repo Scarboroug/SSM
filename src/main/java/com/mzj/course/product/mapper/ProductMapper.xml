@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzj.course.product.dao.ProductMapper">
+    <resultMap id="ProductResultMap" type="com.mzj.course.product.model.Product" >
+        <id column="product_id" property="productId" jdbcType="INTEGER" />
+        <result column="product_name" property="productName" jdbcType="VARCHAR" />
+        <!-- 完 成 余 下 映 射 -->
+        <result column="product_class" property="productClass" jdbcType="INTEGER" />
+        <result column="product_type" property="productType" jdbcType="INTEGER" />
+        <result column="product_manufacturer" property="productManufacturer" jdbcType="VARCHAR" />
+        <result column="product_date" property="productDate" jdbcType="VARCHAR" />
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+        <result column="product_desc" property="productDesc" jdbcType="VARCHAR" />
+        <!--<result column="prodect_by_user_login" property="createdByUserLogin" jdbcType="INTEGER" />-->
+        <!--<result column="created_time" property="createdTime" jdbcType="DATE" />-->
+        <!--<result column="created_updated_by_user_login" property="lasteUpdatedByUserLogin" jdbcType="INTEGER" />-->
+        <!--<result column="last_updated__time" property="lasteUpdatedTime" jdbcType="DATE" />-->
+    </resultMap>
+    <!--根 据 id 查 询 产 品 信 息 -->
+    <select id="findProductById" parameterType="Integer" resultMap="ProductResultMap">
+        <!-- 定 义 sql 语 句 -->
+        SELECT * FROM product WHERE product_id=#{productId}
+    </select> <!-- 查 询 所 有 产 品 -->
+
+
+    <select id="findAllProducts" resultMap="ProductResultMap">
+        <!-- 定 义 sql 语 句 -->
+        select * from product
+    </select>
+
+    <!-- 添 加 产 品 信 息 -->
+    <insert id="addProduct" parameterType="product">
+        <!-- 定 义 sql 语 句 -->
+        insert into product(product_id,product_name,product_class,product_type,product_manufacturer,product_date,product_price,product_desc)
+        values(#{productId},#{productName},#{productClass},#{productType},#{productManufacturer},#{productDate},#{productPrice},#{productDesc})
+    </insert>
+
+    <!-- 删 除 产 品 信 息 -->
+    <delete id="deleteProduct" parameterType="Integer">
+        <!-- 定 义 sql 语 句 -->
+        delete from product where product_id=#{productId}
+    </delete>
+
+    <!--修 改 产 品 信 息 -->
+    <update id="updateProduct" parameterType="product">
+        <!-- 定 义 sql 语 句 -->
+        update product set product.product_id=#{productId},
+        product_name=#{productName},
+        product_class=#{productClass},
+        product_type=#{productType},
+        product_manufacturer=#{productManufacturer},
+        product_date =#{productDate},
+        product_price =#{productPrice},
+        product_desc=#{productDesc}
+        WHERE product_id = #{productId};
+    </update>
+
+</mapper>
